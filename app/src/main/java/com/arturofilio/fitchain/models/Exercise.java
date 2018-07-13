@@ -1,6 +1,9 @@
 package com.arturofilio.fitchain.models;
 
-public class Exercise {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Exercise implements Parcelable {
 
     private String imgURL;
     private String name;
@@ -8,6 +11,34 @@ public class Exercise {
     public Exercise(String imgURL, String name) {
         this.imgURL = imgURL;
         this.name = name;
+    }
+
+    protected Exercise(Parcel in) {
+        name = in.readString();
+        imgURL = in.readString();
+    }
+
+    public static final Creator<Exercise> CREATOR = new Creator<Exercise>() {
+        @Override
+        public Exercise createFromParcel(Parcel in) {
+            return new Exercise(in);
+        }
+
+        @Override
+        public Exercise[] newArray(int size) {
+            return new Exercise[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(imgURL);
     }
 
     public String getImgURL() {
