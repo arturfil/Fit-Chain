@@ -1,9 +1,3 @@
 <resources>
     <string name="app_name">FitChain</string>
-
-    <!--fragment names-->
-    <string name="exercise_fragment">ContactFragment</string>
-    <string name="view_exercises_fragment">ViewContactsFragment</string>
-
-
 </resources>

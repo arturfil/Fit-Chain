@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -24,27 +23,30 @@ import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ExerciseListAdapter extends ArrayAdapter<Exercise> {
+public class CustomListAdapter extends ArrayAdapter<Exercise> {
 
     private LayoutInflater mInflater;
-    private List<Exercise> mExercises = null;
-    private ArrayList<Exercise> arrayList;
+    private List<Exercise> mContacts = null;
+    private ArrayList<Exercise> arrayList; //used for search bar
     private int layoutResource;
     private Context mContext;
     private String mAppend;
 
-    public ExerciseListAdapter(@NonNull Context context, int resource, @NonNull List<Exercise> exercises, String append) {
+    public CustomListAdapter(@NonNull Context context, int resource, @NonNull List<Exercise> exercises, String append) {
         super(context, resource, exercises);
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         layoutResource = resource;
         this.mContext = context;
+        mAppend = append;
+        this.mContacts = exercises;
         arrayList = new ArrayList<>();
-        this.arrayList.addAll(mExercises);
+        this.arrayList.addAll(mContacts);
+
     }
 
-    private static class ViewHolder {
+    private static class ViewHolder{
         TextView name;
-        ImageView imgURL;
+        CircleImageView exerciseImage;
         ProgressBar mProgressBar;
     }
 
@@ -52,16 +54,16 @@ public class ExerciseListAdapter extends ArrayAdapter<Exercise> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        //----------------------ViewHolder Pattern Start
+        //----------------------- ViewHolder Pattern Start
         final ViewHolder holder;
 
         if(convertView == null){
             convertView = mInflater.inflate(layoutResource, parent, false);
             holder = new ViewHolder();
 
-            //-------------------------------------Stuff to change---------------------------
+            //------------------------------------Stuff to change------------------------------
             holder.name = (TextView) convertView.findViewById(R.id.exerciseName);
-            holder.imgURL = (ImageView) convertView.findViewById(R.id.exerciseImage);
+            holder.exerciseImage = (CircleImageView) convertView.findViewById(R.id.exerciseImage);
 
             holder.mProgressBar = (ProgressBar) convertView.findViewById(R.id.exerciseProgressbar);
 
@@ -77,7 +79,7 @@ public class ExerciseListAdapter extends ArrayAdapter<Exercise> {
 
         ImageLoader imageLoader = ImageLoader.getInstance();
 
-        imageLoader.displayImage(mAppend + imagePath, holder.imgURL, new ImageLoadingListener() {
+        imageLoader.displayImage(mAppend + imagePath, holder.exerciseImage, new ImageLoadingListener() {
             @Override
             public void onLoadingStarted(String imageUri, View view) {
                 holder.mProgressBar.setVisibility(View.VISIBLE);
@@ -99,20 +101,20 @@ public class ExerciseListAdapter extends ArrayAdapter<Exercise> {
             }
         });
 
-        return convertView;
+        return  convertView;
     }
 
     //Filter class
     public void filter(String characterText) {
         characterText = characterText.toLowerCase(Locale.getDefault());
-        mExercises.clear();
+        mContacts.clear();
         if(characterText.length() == 0) {
-            mExercises.addAll(arrayList);
+            mContacts.addAll(arrayList);
         } else {
-            mExercises.clear();
-            for(Exercise exercise: arrayList) {
-                if (exercise.getName().toLowerCase(Locale.getDefault()).contains(characterText)) {
-                    mExercises.add(exercise);
+            mContacts.clear();
+            for(Exercise contact: arrayList){
+                if(contact.getName().toLowerCase(Locale.getDefault()).contains(characterText)) {
+                    mContacts.add(contact);
                 }
             }
         }

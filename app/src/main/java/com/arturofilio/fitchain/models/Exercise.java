@@ -8,9 +8,9 @@ public class Exercise implements Parcelable {
     private String imgURL;
     private String name;
 
-    public Exercise(String name, String imgURL) {
-        this.name = name;
+    public Exercise(String imgURL, String name) {
         this.imgURL = imgURL;
+        this.name = name;
     }
 
     protected Exercise(Parcel in) {

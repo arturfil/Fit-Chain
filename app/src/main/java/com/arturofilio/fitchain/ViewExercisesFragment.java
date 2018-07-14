@@ -6,14 +6,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -22,15 +19,12 @@ import com.arturofilio.fitchain.Utils.ExerciseListAdapter;
 import com.arturofilio.fitchain.models.Exercise;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Locale;
 
 public class ViewExercisesFragment extends Fragment {
 
     private static final String TAG = "ViewExercisesFragment";
 
-    private String testImgUrl = "drawable://" + R.drawable.abdominal;
+    private String testImgUrl = "drawable://" + R.drawable.biceps;
 
     public interface OnExerciseSelectedListener {
         public void OnExerciseSelected(Exercise exer);
@@ -87,15 +81,15 @@ public class ViewExercisesFragment extends Fragment {
 
     private void setupExerciseList() {
         final ArrayList<Exercise> exercises = new ArrayList<>();
-
-        exercises.add(new Exercise("Chest", "drawable://" + R.drawable.profile_pic));
-        exercises.add(new Exercise("Chest", "drawable://" + R.drawable.profile_pic));
-        exercises.add(new Exercise("Chest", "drawable://" + R.drawable.profile_pic));
-
-        adapter = new ExerciseListAdapter(getActivity(), R.layout.layout_exerciselistitem, exercises, "");
-        exerciseList.setAdapter(adapter);
-
-
+        exercises.add(new Exercise("Chest", testImgUrl));
+        exercises.add(new Exercise("Chest", testImgUrl));
+        exercises.add(new Exercise("Chest", testImgUrl));
+        exercises.add(new Exercise("Chest", testImgUrl));
+        exercises.add(new Exercise("Chest", testImgUrl));
+        exercises.add(new Exercise("Chest", testImgUrl));
+        exercises.add(new Exercise("Chest", testImgUrl));
+        exercises.add(new Exercise("Chest", testImgUrl));
+        exercises.add(new Exercise("Chest", testImgUrl));
     }
 
     /**
