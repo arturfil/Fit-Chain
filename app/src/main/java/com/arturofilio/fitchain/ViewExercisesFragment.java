@@ -6,20 +6,26 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.arturofilio.fitchain.Utils.BottomNavigationViewHelper;
 import com.arturofilio.fitchain.Utils.CustomListAdapter;
 import com.arturofilio.fitchain.Utils.ExerciseListAdapter;
 import com.arturofilio.fitchain.models.Exercise;
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,8 +35,6 @@ import java.util.Locale;
 public class ViewExercisesFragment extends Fragment {
 
     private static final String TAG = "ViewExercisesFragment";
-
-    private String testImgUrl = "drawable://" + R.drawable.biceps;
 
     public interface OnExerciseSelectedListener {
         public void OnExerciseSelected(Exercise exer);
@@ -61,6 +65,7 @@ public class ViewExercisesFragment extends Fragment {
         setAppBarState(STANDARD_APPBAR);
 
         setupExerciseList();
+        setupBottomNavigationView();
 
         ImageView ivSearchExercise = (ImageView) view.findViewById(R.id.ivSearchIcon);
         ivSearchExercise.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +76,23 @@ public class ViewExercisesFragment extends Fragment {
             }
         });
 
+        ImageView ivBackArrow = (ImageView) view.findViewById(R.id.ivBackArrow);
+        ivBackArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: clicked back arrow.");
+                toggleToolBarState();
+            }
+        });
+
         return view;
+    }
+
+    /**
+     * BottomNavigationView setup
+     */
+    private void setupBottomNavigationView() {
+        Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
     }
 
     @Override
@@ -87,23 +108,24 @@ public class ViewExercisesFragment extends Fragment {
 
     private void setupExerciseList() {
         final ArrayList<Exercise> exercises = new ArrayList<>();
-        exercises.add(new Exercise("Chest", testImgUrl));
-        exercises.add(new Exercise("Chest", testImgUrl));
-        exercises.add(new Exercise("Chest", testImgUrl));
-        exercises.add(new Exercise("Chest", testImgUrl));
-        exercises.add(new Exercise("Chest", testImgUrl));
-        exercises.add(new Exercise("Chest", testImgUrl));
-        exercises.add(new Exercise("Chest", testImgUrl));
-        exercises.add(new Exercise("Chest", testImgUrl));
-        exercises.add(new Exercise("Chest", testImgUrl));
+        exercises.add(new Exercise("Chest", "drawable://" + R.drawable.chest));
+        exercises.add(new Exercise("Biceps", "drawable://" + R.drawable.biceps));
+        exercises.add(new Exercise("Triceps", "drawable://" + R.drawable.triceps));
+        exercises.add(new Exercise("Back", "drawable://" + R.drawable.back));
+        exercises.add(new Exercise("Shoulders", "drawable://" + R.drawable.shoulders));
+        exercises.add(new Exercise("Abdominal", "drawable://" + R.drawable.abdominal));
+        exercises.add(new Exercise("Legs", "drawable://" + R.drawable.legs));
+        exercises.add(new Exercise("Calisthenics", "drawable://" + R.drawable.calisthenics));
+        exercises.add(new Exercise("Cardio", "drawable://" + R.drawable.cardio));
+        exercises.add(new Exercise("Nutrition", "drawable://" + R.drawable.nutrition));
 
         //sort the arrayList based on the contact name
-            Collections.sort(exercises, new Comparator<Exercise>() {
-            @Override
-            public int compare(Exercise o1, Exercise o2) {
-                return o1.getName().compareToIgnoreCase(o2.getName());
-            }
-        });
+//        Collections.sort(exercises, new Comparator<Exercise>() {
+//            @Override
+//            public int compare(Exercise o1, Exercise o2) {
+//                return o1.getName().compareToIgnoreCase(o2.getName());
+//            }
+//        });
 
         adapter = new CustomListAdapter(getActivity(), R.layout.layout_exerciselistitem, exercises, "");
 
@@ -126,6 +148,16 @@ public class ViewExercisesFragment extends Fragment {
         });
 
         exerciseList.setAdapter(adapter);
+
+        exerciseList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d(TAG, "onClick: navigating to" + getString(R.string.exercise));
+
+                //pass the contact to the interface and send it to MainActivity.
+                mExerciseListener.OnExerciseSelected(exercises.get(position));
+            }
+        });
     }
 
 

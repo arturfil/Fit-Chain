@@ -83,7 +83,7 @@ public class CustomListAdapter extends ArrayAdapter<Exercise> {
         imageLoader.displayImage(mAppend + imagePath, holder.exerciseImage, new ImageLoadingListener() {
             @Override
             public void onLoadingStarted(String imageUri, View view) {
-                holder.mProgressBar.setVisibility(View.VISIBLE);
+//                holder.mProgressBar.setVisibility(View.VISIBLE);
             }
 
             @Override

@@ -30,6 +30,9 @@ dependencies {
     compile 'com.android.support:design:27.1.1'
     compile 'com.android.support:appcompat-v7:27.1.1'
 
+    //BottomNavigationView Library
+    compile 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
+
     //Universal Image Loader
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 

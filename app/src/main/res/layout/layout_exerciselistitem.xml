@@ -4,12 +4,10 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.v7.widget.CardView
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        app:cardCornerRadius="0dp"
-        app:contentPaddingRight="10dp"
-        app:contentPaddingLeft="10dp"
+        android:paddingBottom="1dp"
         >
 
         <ImageView
@@ -45,7 +43,7 @@
             android:id="@+id/exerciseProgressbar"
             android:layout_gravity="center_horizontal|center_vertical"/>
 
-    </android.support.v7.widget.CardView>
+    </android.support.design.widget.CoordinatorLayout>
 
 
 </RelativeLayout>

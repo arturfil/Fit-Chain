@@ -1,5 +1,6 @@
 package com.arturofilio.fitchain;
 
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.PersistableBundle;
@@ -11,9 +12,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.arturofilio.fitchain.Utils.UniversalImageLoader;
 import com.arturofilio.fitchain.models.Exercise;
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.ByteArrayOutputStream;
