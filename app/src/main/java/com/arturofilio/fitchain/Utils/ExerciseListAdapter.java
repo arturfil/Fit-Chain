@@ -39,7 +39,6 @@ public class ExerciseListAdapter extends ArrayAdapter<Exercise> {
         layoutResource = resource;
         this.mContext = context;
         arrayList = new ArrayList<>();
-        this.arrayList.addAll(mExercises);
     }
 
     private static class ViewHolder {
