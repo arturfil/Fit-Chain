@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -26,7 +27,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class CustomListAdapter extends ArrayAdapter<Exercise> {
 
     private LayoutInflater mInflater;
-    private List<Exercise> mContacts = null;
+    private List<Exercise> mExercices = null;
     private ArrayList<Exercise> arrayList; //used for search bar
     private int layoutResource;
     private Context mContext;
@@ -38,15 +39,15 @@ public class CustomListAdapter extends ArrayAdapter<Exercise> {
         layoutResource = resource;
         this.mContext = context;
         mAppend = append;
-        this.mContacts = exercises;
+        this.mExercices = exercises;
         arrayList = new ArrayList<>();
-        this.arrayList.addAll(mContacts);
+        this.arrayList.addAll(mExercices);
 
     }
 
     private static class ViewHolder{
         TextView name;
-        CircleImageView exerciseImage;
+        ImageView exerciseImage;
         ProgressBar mProgressBar;
     }
 
@@ -63,7 +64,7 @@ public class CustomListAdapter extends ArrayAdapter<Exercise> {
 
             //------------------------------------Stuff to change------------------------------
             holder.name = (TextView) convertView.findViewById(R.id.exerciseName);
-            holder.exerciseImage = (CircleImageView) convertView.findViewById(R.id.exerciseImage);
+            holder.exerciseImage = (ImageView) convertView.findViewById(R.id.exerciseImage);
 
             holder.mProgressBar = (ProgressBar) convertView.findViewById(R.id.exerciseProgressbar);
 
@@ -107,14 +108,14 @@ public class CustomListAdapter extends ArrayAdapter<Exercise> {
     //Filter class
     public void filter(String characterText) {
         characterText = characterText.toLowerCase(Locale.getDefault());
-        mContacts.clear();
+        mExercices.clear();
         if(characterText.length() == 0) {
-            mContacts.addAll(arrayList);
+            mExercices.addAll(arrayList);
         } else {
-            mContacts.clear();
+            mExercices.clear();
             for(Exercise contact: arrayList){
                 if(contact.getName().toLowerCase(Locale.getDefault()).contains(characterText)) {
-                    mContacts.add(contact);
+                    mExercices.add(contact);
                 }
             }
         }

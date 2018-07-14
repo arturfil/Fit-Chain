@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +17,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.arturofilio.fitchain.Utils.CustomListAdapter;
 import com.arturofilio.fitchain.Utils.ExerciseListAdapter;
 import com.arturofilio.fitchain.models.Exercise;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Locale;
 
 public class ViewExercisesFragment extends Fragment {
 
@@ -38,7 +44,7 @@ public class ViewExercisesFragment extends Fragment {
     private int mAppBarState;
 
     private AppBarLayout viewExercisesBar, searchBar;
-    private ExerciseListAdapter adapter;
+    private CustomListAdapter adapter;
     private ListView exerciseList;
     private EditText mSearchExercises;
 
@@ -90,7 +96,38 @@ public class ViewExercisesFragment extends Fragment {
         exercises.add(new Exercise("Chest", testImgUrl));
         exercises.add(new Exercise("Chest", testImgUrl));
         exercises.add(new Exercise("Chest", testImgUrl));
+
+        //sort the arrayList based on the contact name
+            Collections.sort(exercises, new Comparator<Exercise>() {
+            @Override
+            public int compare(Exercise o1, Exercise o2) {
+                return o1.getName().compareToIgnoreCase(o2.getName());
+            }
+        });
+
+        adapter = new CustomListAdapter(getActivity(), R.layout.layout_exerciselistitem, exercises, "");
+
+        mSearchExercises.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                String text = mSearchExercises.getText().toString().toLowerCase(Locale.getDefault());
+                adapter.filter(text);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        exerciseList.setAdapter(adapter);
     }
+
 
     /**
      * Initiates the appbar state toggle
