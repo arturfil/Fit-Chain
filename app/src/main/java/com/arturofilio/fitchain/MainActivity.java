@@ -30,10 +30,21 @@ public class MainActivity extends AppCompatActivity implements
     private static final int REQUEST_CODE = 1;
 
     @Override
-    public void OnExerciseSelected(Exercise exer) {
+    public void OnExerciseSelected(Exercise exercise) {
 
         //Missing code here
-        Log.d(TAG, "OnExerciseSelected: exercise selected from: " );
+        Log.d(TAG, "OnExerciseSelected: exercise selected from: "
+                + getString(R.string.view_exercise_fragment) + " " + exercise.getName());
+
+        ExerciseFragment fragment = new ExerciseFragment();
+        Bundle args = new Bundle();
+        args.putParcelable(getString(R.string.exercise), exercise);
+        fragment.setArguments(args);
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        transaction.addToBackStack(getString(R.string.exercise_fragment));
+        transaction.commit();
     }
 
     @Override

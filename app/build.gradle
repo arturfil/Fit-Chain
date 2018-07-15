@@ -27,18 +27,18 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     //Design Library for Coordinator Layout and Toolbar
-    compile 'com.android.support:design:27.1.1'
-    compile 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
 
     //BottomNavigationView Library
-    compile 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
+    implementation 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
 
     //Universal Image Loader
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
     //CardView Library
-    compile 'com.android.support:cardview-v7:27.1.1'
+    implementation 'com.android.support:cardview-v7:27.1.1'
 
     //Circle ImageView Library
-    compile 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
 }

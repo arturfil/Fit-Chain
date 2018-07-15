@@ -28,14 +28,14 @@ public class UniversalImageLoader {
 
     public ImageLoaderConfiguration getConfig() {
         //Universal Image Loader Setup
-//        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
 //                .showImageOnLoading(defaultImage)
 //                .showImageForEmptyUri(defaultImage)
 //                .showImageOnFail(defaultImage)
-//                .cacheOnDisk(true).cacheInMemory(true)
-//                .cacheOnDisk(true).resetViewBeforeLoading(true)
-//                .imageScaleType(ImageScaleType.EXACTLY)
-//                .displayer(new FadeInBitmapDisplayer(300)).build();
+                .cacheOnDisk(true).cacheInMemory(true)
+                .cacheOnDisk(true).resetViewBeforeLoading(true)
+                .imageScaleType(ImageScaleType.EXACTLY)
+                .displayer(new FadeInBitmapDisplayer(300)).build();
 
 //        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(mContext)
 //                .defaultDisplayImageOptions(defaultOptions)
@@ -44,7 +44,7 @@ public class UniversalImageLoader {
 //                .build();
 
         return new ImageLoaderConfiguration.Builder(mContext)
-//                .defaultDisplayImageOptions(defaultOptions)
+                .defaultDisplayImageOptions(defaultOptions)
                 .memoryCache(new WeakMemoryCache())
                 .diskCacheSize( 100 * 1024 * 1024)
                 .build();
@@ -56,9 +56,9 @@ public class UniversalImageLoader {
         imageLoader.displayImage(append + imgURL, imageView, new ImageLoadingListener() {
             @Override
             public void onLoadingStarted(String imageUri, View view) {
-//                if(mProgressBar != null) {
-//                    mProgressBar.setVisibility(View.VISIBLE);
-//                }
+                if(mProgressBar != null) {
+                    mProgressBar.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override

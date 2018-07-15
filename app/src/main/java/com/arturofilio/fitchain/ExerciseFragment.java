@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+
 import com.arturofilio.fitchain.Utils.UniversalImageLoader;
 import com.arturofilio.fitchain.models.Exercise;
 
@@ -32,7 +33,7 @@ public class ExerciseFragment extends Fragment {
         setArguments(new Bundle());
     }
 
-    private android.support.v7.widget.Toolbar toolbar;
+    private Toolbar toolbar;
     private Exercise mExercise;
     private TextView mExerciseName;
     private ImageView mExerciseImage;
@@ -42,9 +43,9 @@ public class ExerciseFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exercise, container, false);
-        toolbar = (Toolbar) view.findViewById(R.id.viewExercisesToolbar);
+        toolbar = (Toolbar) view.findViewById(R.id.exerciseToolbar);
         mExerciseName = (TextView) view.findViewById(R.id.exerciseName);
-        mExerciseImage = (CircleImageView) view.findViewById(R.id.exerciseImage);
+        mExerciseImage = (ImageView) view.findViewById(R.id.exerciseImage);
         mListView = (ListView) view.findViewById(R.id.lvContactProperties);
         Log.d(TAG, "onCreateView: started");
         mExercise = getExerciseFromBundle();
@@ -55,15 +56,16 @@ public class ExerciseFragment extends Fragment {
         init();
 
         //navigation for the back-arrow
-        ImageView ivBackArrow = (ImageView) view.findViewById(R.id.ivBackArrow);
-        ivBackArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked back arrow.");
-                //remove previous fragment form the back-stack (therefore navigating back)
-                getActivity().getSupportFragmentManager().popBackStack();
-            }
-        });
+//        ImageView ivBackArrow = (ImageView) view.findViewById(R.id.ivBackArrow);
+//        ivBackArrow.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.d(TAG, "onClick: clicked back arrow.");
+//                //remove previous fragment form the back-stack (therefore navigating back)
+//                getActivity().getSupportFragmentManager().popBackStack();
+//            }
+//        });
+
 
         return view;
     }
@@ -76,9 +78,12 @@ public class ExerciseFragment extends Fragment {
         ArrayList<String> properties = new ArrayList<>();
     }
 
-    private Exercise getExerciseFromBundle() {
-
-        Log.d(TAG, "getExerciseFromBundle: arguments" + getArguments());
+    /**
+     * Retrieves the selected contact from the bundle (coming from MainActivity)
+     * @return
+     */
+    private Exercise getExerciseFromBundle(){
+        Log.d(TAG, "getContactFromBundle: argumetns" + getArguments());
 
         Bundle bundle = this.getArguments();
         if(bundle != null){

@@ -3,6 +3,7 @@
 
     <!--fragment names-->
     <string name="exercise_fragment">ExerciseFragment</string>
+    <string name="view_exercise_fragment">ViewExerciseFragment</string>
 
     <!--keys-->
     <string name="exercise">Exercise</string>
