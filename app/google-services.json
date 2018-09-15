@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "144023060130",
+    "firebase_url": "https://fit-chain.firebaseio.com",
+    "project_id": "fit-chain",
+    "storage_bucket": "fit-chain.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144023060130:android:246920f1b580d904",
+        "android_client_info": {
+          "package_name": "com.arturofilio.fitchain"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144023060130-hpnfdkqd7lhgqv4sn0ojtqt0bo6lf2kp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAElFpHcGWmfG4E_bofUFug-zyy3151pvY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
