@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,28 +21,30 @@ public class SignInActivity extends AppCompatActivity {
 
     private static final String TAG = "SignInActivity";
 
-    EditText mUsername, mPassword;
+    EditText mEmail, mPassword;
     Button btnSignIn;
     TextView txtLink, txtPasswordLink;
 
-    private FirebaseAuth auth;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
 
-        mUsername = (EditText) findViewById(R.id.txt_username);
+        mEmail = (EditText) findViewById(R.id.txt_username);
         mPassword = (EditText) findViewById(R.id.txt_password);
         btnSignIn = (Button) findViewById(R.id.btn_login);
         txtLink = (TextView) findViewById(R.id.txt_link);
         txtPasswordLink = (TextView) findViewById(R.id.txt_password_link);
 
         // Init Firebase Auth
-        auth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuth.signOut();
 
         // Check if session is already active (true),
-        if(auth.getCurrentUser() != null) {
+        if(mAuth.getCurrentUser() != null) {
             Intent intent = new Intent(SignInActivity.this, MainActivity.class);
             startActivity(intent);
         }
@@ -57,29 +60,40 @@ public class SignInActivity extends AppCompatActivity {
         txtPasswordLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-                startActivity(intent);
+                Toast.makeText(SignInActivity.this, "Ooops!", Toast.LENGTH_SHORT).show();
             }
         });
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginUser(mUsername.getText().toString(), mPassword.getText().toString());
+                loginUser(mEmail.getText().toString(), mPassword.getText().toString());
             }
         });
 
     }
 
     private void loginUser(String email, final String password) {
-        auth.signInWithEmailAndPassword(email,password)
+        
+        String emailField = mEmail.getText().toString();
+        String passwordField = mPassword.getText().toString();
+        
+        if(TextUtils.isEmpty(emailField) || TextUtils.isEmpty(passwordField)) {
+            Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        
+        mAuth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful()) {
                             if(password.length() < 6) {
                                 Toast.makeText(SignInActivity.this, "Password must have 6 characters", Toast.LENGTH_SHORT).show();
+                                return;
                             }
+                            Toast.makeText(SignInActivity.this, "Username or Password incorrect", Toast.LENGTH_SHORT).show();
+                            return;
                         } else {
                             Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                             startActivity(intent);

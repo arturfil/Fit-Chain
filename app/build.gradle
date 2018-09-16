@@ -27,10 +27,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     //google firebase
-    implementation 'com.google.firebase:firebase-auth:16.0.1'
-    implementation 'com.google.firebase:firebase-core:16.0.1'
-    implementation 'com.google.firebase:firebase-database:16.0.1'
-    implementation 'com.firebaseui:firebase-ui-database:1.2.0'
+    implementation 'com.google.firebase:firebase-auth:10.0.1'
 
     //Design Library for Coordinator Layout and Toolbar
     implementation 'com.android.support:design:27.1.1'
