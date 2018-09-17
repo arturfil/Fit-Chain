@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements
         Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
         BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.bottomNavigationViewBar);
         BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
-        //BottomNavigationViewHelper.enableNavigation(mContext, bottomNavigationViewEx);
+        BottomNavigationViewHelper.enableNavigation(mContext, bottomNavigationViewEx);
     }
 
     /**

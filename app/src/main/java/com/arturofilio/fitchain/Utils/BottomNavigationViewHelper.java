@@ -18,10 +18,7 @@ public class BottomNavigationViewHelper {
 
     public static void setupBottomNavigationView(BottomNavigationViewEx bottomNavigationViewEx) {
         Log.d(TAG, "setupBottomNavigationView: setting bottom menu bar");
-//        bottomNavigationViewEx.enableAnimation(false);
-//        bottomNavigationViewEx.enableShiftingMode(false);
-//        bottomNavigationViewEx.enableItemShiftingMode(false);
-//        bottomNavigationViewEx.setTextVisibility(false);
+
     }
 
     public static void enableNavigation(final Context context, BottomNavigationViewEx view) {

@@ -41,8 +41,6 @@ public class SignInActivity extends AppCompatActivity {
         // Init Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-        mAuth.signOut();
-
         // Check if session is already active (true),
         if(mAuth.getCurrentUser() != null) {
             Intent intent = new Intent(SignInActivity.this, MainActivity.class);

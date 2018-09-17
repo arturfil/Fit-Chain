@@ -33,32 +33,87 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:text="Fat"
-                android:textSize="30dp"
-                />
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:textSize="30dp"
-                android:text="Fat"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="Body Fat %"
+                    android:textSize="20dp"
+                    />
 
-            <TextView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="13.4"
+                    android:textSize="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:textSize="30dp"
-                android:text="Fat"/>
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="Muscle Mass %"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="80%"
+                    android:textSize="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="Weight"
+                    android:textSize="20dp"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="78KG"
+                    android:textSize="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    />
+
+            </LinearLayout>
 
 
         </LinearLayout>
 
 
+
     </LinearLayout>
+
+    <include layout="@layout/layout_bottom_navigation_view" />
 
 </RelativeLayout>
