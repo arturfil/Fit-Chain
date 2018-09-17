@@ -1,11 +1,13 @@
 package com.arturofilio.fitchain;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -15,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.arturofilio.fitchain.Utils.BottomNavigationViewHelper;
 import com.arturofilio.fitchain.Utils.UniversalImageLoader;
 import com.arturofilio.fitchain.models.Exercise;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -26,8 +29,10 @@ public class MainActivity extends AppCompatActivity implements
         ViewExercisesFragment.OnExerciseSelectedListener {
 
     private static final String TAG = "MainActivity";
-
+    private static final int ACTIVITY_NUM = 0;
     private static final int REQUEST_CODE = 1;
+
+    private Context mContext = MainActivity.this;
 
     @Override
     public void OnExerciseSelected(Exercise exercise) {
@@ -53,9 +58,22 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: started");
 
-        initImageLoader();
+        setupBottomNavigationView();
 
+        initImageLoader();
         init();
+
+        setupBottomNavigationView();
+    }
+
+    /**
+     * BottomNavigationView setup
+     */
+    private void setupBottomNavigationView() {
+        Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
+        BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.bottomNavigationViewBar);
+        BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
+        //BottomNavigationViewHelper.enableNavigation(mContext, bottomNavigationViewEx);
     }
 
     /**
@@ -72,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void initImageLoader() {
-        UniversalImageLoader universalImageLoader = new UniversalImageLoader(MainActivity.this);
+        UniversalImageLoader universalImageLoader = new UniversalImageLoader(mContext);
         ImageLoader.getInstance().init(universalImageLoader.getConfig());
     }
 
@@ -112,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements
         Log.d(TAG, "checkPermission: checkPermission: check permissions for: " + permission[0]);
 
         int permissionRequest = ActivityCompat.checkSelfPermission(
-                MainActivity.this,
+                mContext,
                 permission[0]);
 
         if(permissionRequest != PackageManager.PERMISSION_GRANTED){
