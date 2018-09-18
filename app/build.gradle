@@ -28,6 +28,7 @@ dependencies {
 
     //google firebase
     implementation 'com.google.firebase:firebase-auth:10.0.1'
+    implementation 'com.google.firebase:firebase-storage:10.0.1'
 
     //Design Library for Coordinator Layout and Toolbar
     implementation 'com.android.support:design:27.1.1'
